@@ -6,6 +6,7 @@ const Home = ({ userObj }) => {
         // console.log(userObj);
         const [sweet, setSweet] = useState("");
         const [sweets, setSweets] = useState([]);
+        const [attachment, setAttachment] = useState();
         // -----------------------------old way---------------
         // const getSweets = async() => {
         //    const dbSweets = await dbService.collection("sweets").get()
@@ -43,11 +44,45 @@ const Home = ({ userObj }) => {
             // event로 부터라는 의미. 즉, event 안에 있는 target 안에 있는 value를 달라고 하는 것.
             setSweet(value);
         };
+        const onFileChange = (event) => {
+            const {
+                target: { files },
+            } = event;
+            const theFile = files[0];
+            // FileReader API 사용
+            const reader = new FileReader();
+            // Eventlistener를 fileReader에 붙임
+            reader.onloadend = (finishedEvent) => {
+                // finishedEvent의 result를 setAttachment로 설정
+                const {
+                    currentTarget: { result },
+                } = finishedEvent;
+                setAttachment(result);
+            };
+            reader.readAsDataURL(theFile);
+        };
+    const onClearAttachment = () => {
+        setAttachment(null);
+    };
+
     return (
     <div>
         <form onSubmit={onSubmit}>
-            <input value={sweet} onChange={onChange} type="text" placeholder="What's on your mind?" maxLength={120} />
+            <input 
+                value={sweet} 
+                onChange={onChange} 
+                type="text" 
+                placeholder="What's on your mind?" 
+                maxLength={120} 
+            />
+            <input type="file" accept="image/*" onChange={onFileChange} />
             <input type="submit" value="Sweet" />
+            {attachment && (
+            <div>
+                <img src={attachment} width="50px" height="50px" alt="" />
+                <button onClick={onClearAttachment}>Clear</button>
+            </div>    
+            )}
         </form>
         <div>
             {sweets.map((sweet) => (

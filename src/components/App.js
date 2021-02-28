@@ -30,7 +30,7 @@ function App() {
     ) : (
       "Initializing..."
     )}
-  <footer>&copy; Switter {new Date().getFullYear()} </footer>
+  {/* <footer>&copy; Switter {new Date().getFullYear()} </footer> */}
   </>
   )
 }
