@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { dbService, storageService } from 'fbase';
+import { dbService } from 'fbase';
 import Sweet from 'components/Sweet';
 import SweetFactory from 'components/SweetFactory';
 
@@ -17,9 +17,9 @@ const Home = ({ userObj }) => {
         }, []);
 
     return (
-        <div>
+        <div className="container">
             <SweetFactory userObj={userObj} />
-            <div>
+            <div style={{marginTop: 30}}>
                 {sweets.map((sweet) => (
                     <Sweet 
                         key={sweet.id} 
