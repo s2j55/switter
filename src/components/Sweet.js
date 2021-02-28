@@ -32,17 +32,21 @@ const Sweet = ({sweetObj, isOwner}) => {
                 {
                     editing ? (
                         <>
-                            <form onSubmit={onSubmit}>
-                                <input 
-                                    type="text" 
-                                    placeholder="Edit your sweet" 
-                                    value={newSweet} 
-                                    required
-                                    onChange={onChange}    
-                                />
-                                <input type="submit" value="Update Sweet" />
-                            </form>
-                            <button onClick={toggleEditing}>Cancel</button>
+                            {isOwner && 
+                            <>
+                                <form onSubmit={onSubmit}>
+                                    <input 
+                                        type="text" 
+                                        placeholder="Edit your sweet" 
+                                        value={newSweet} 
+                                        required
+                                        onChange={onChange}    
+                                    />
+                                    <input type="submit" value="Update Sweet" />
+                                </form>
+                                <button onClick={toggleEditing}>Cancel</button>
+                            </>
+                            }
                         </>
                     )
                    :  (
