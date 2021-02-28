@@ -1,8 +1,22 @@
 import { dbService } from 'fbase';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Home = () => {
         const [sweet, setSweet] = useState("");
+        const [sweets, setSweets] = useState([]);
+        const getSweets = async() => {
+           const dbSweets = await dbService.collection("sweets").get()
+           dbSweets.forEach((document) => {
+               const sweetObject = {
+                    ...document.data(),
+                    id: document.id,
+               };
+                setSweets((prev) => [sweetObject, ...prev]);
+           });
+        };
+        useEffect(() => {
+            getSweets();
+        }, [])
         const onSubmit = async (event) => {
             event.preventDefault();
             await dbService.collection("sweets").add({
@@ -18,12 +32,22 @@ const Home = () => {
             // event로 부터라는 의미. 즉, event 안에 있는 target 안에 있는 value를 달라고 하는 것.
             setSweet(value);
         };
+        console.log(sweets);
     return (
     <div>
         <form onSubmit={onSubmit}>
             <input value={sweet} onChange={onChange} type="text" placeholder="What's on your mind?" maxLength={120} />
             <input type="submit" value="Sweet" />
         </form>
+        <div>
+            {sweets.map((sweet) => 
+                (
+                <div key={sweet.id}>
+                    <h4>{sweet.sweet}</h4>
+                </div>
+                )
+            )}
+        </div>
     </div>
 )};
 export default Home;
