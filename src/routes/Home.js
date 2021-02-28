@@ -31,10 +31,24 @@ const Home = ({ userObj }) => {
         }, []);
         const onSubmit = async (event) => {
             event.preventDefault();
-            const fileRef = storageService.ref().child(`${userObj.uid}/${uuidv4()}`);
-            const response = await fileRef.putString(attachment, "data_url");
-            // 밑에 있는  reader.readAsDataURL(theFile);을 위에 사용하는 것
-            console.log(response)
+            let attachmentUrl = "";
+            if(attachment != "") {
+                const attachmentRef = storageService
+                    .ref()
+                    .child(`${userObj.uid}/${uuidv4()}`);
+                const response = await attachmentRef.putString(attachment, "data_url");
+                // 밑에 있는  reader.readAsDataURL(theFile);을 위에 사용하는 것
+                attachmentUrl = await response.ref.getDownloadURL();
+            }
+            const sweetObj = {
+                text: sweet,
+                createdAt: Date.now(),
+                creatorId: userObj.uid,
+                attachmentUrl,
+            };
+            await dbService.collection("sweets").add(sweetObj);
+            setSweet("");
+            setAttachment("");
             /* await dbService.collection("sweets").add({
                 text: sweet,
                 createdAt: Date.now(),
