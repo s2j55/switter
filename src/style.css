@@ -32,7 +32,7 @@ form {
   width: 100%;
 }
 
-.nweet-input::placeholder {
+.sweet-input::placeholder {
   color: white;
   opacity: 0.9;
 }
@@ -84,7 +84,7 @@ form {
   margin-top: 50px;
 }
 
-/* Nwitter Factory */
+/* Switter Factory */
 
 .factoryForm {
   display: flex;
@@ -160,15 +160,15 @@ form {
   font-size: 12px;
 }
 
-/* Nweet */
+/* Sweet */
 
-.nweetEdit .formBtn {
+.sweetEdit .formBtn {
   cursor: pointer;
   margin-top: 15px;
   margin-bottom: 5px;
 }
 
-.nweet {
+.sweet {
   margin-bottom: 20px;
   background-color: white;
   width: 100%;
@@ -181,11 +181,11 @@ form {
   color: rgba(0, 0, 0, 0.8);
 }
 
-.nweet h4 {
+.sweet h4 {
   font-size: 14px;
 }
 
-.nweet img {
+.sweet img {
   right: -10px;
   top: 20px;
   position: absolute;
@@ -195,17 +195,17 @@ form {
   margin-top: 10px;
 }
 
-.nweet__actions {
+.sweet__actions {
   position: absolute;
   right: 10px;
   top: 10px;
 }
 
-.nweet__actions span {
+.sweet__actions span {
   cursor: pointer;
 }
 
-.nweet__actions span:first-child {
+.sweet__actions span:first-child {
   margin-right: 10px;
 }
 

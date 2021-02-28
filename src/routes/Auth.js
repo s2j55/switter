@@ -8,13 +8,12 @@ import {
 import { authService, firebaseInstance } from 'fbase';
 import AuthForm from "components/AuthForm";
 
-const Auth = () => {
- 
-const onSocialClick = async (event) => {
-  const { 
-    target: { name }, 
-  } = event; 
-  //ES6
+const Auth = () => { 
+  const onSocialClick = async (event) => {
+    const { 
+      target: { name }, 
+    } = event; 
+    //ES6
   let provider;
   if(name === "google") {
     provider = new firebaseInstance.auth.GoogleAuthProvider();
@@ -24,7 +23,6 @@ const onSocialClick = async (event) => {
   await authService.signInWithPopup(provider);
 
 };
-
   return (
     <div className="authContainer">
       <FontAwesomeIcon
@@ -35,9 +33,11 @@ const onSocialClick = async (event) => {
       />
       <AuthForm />
       <div classNAme="authBtns">
-          <button onClick={onSocialClick} name="google" className="authBtn">Continue with Google<FontAwesomeIcon icon={faGoogle} />
+          <button onClick={onSocialClick} name="google" className="authBtn">
+            Continue with Google<FontAwesomeIcon icon={faGoogle} />
           </button>
-          <button onClick={onSocialClick} name="github" className="authBtn">Continue with Github<FontAwesomeIcon icon={faGithub} />
+          <button onClick={onSocialClick} name="github" className="authBtn">
+            Continue with Github<FontAwesomeIcon icon={faGithub} />
           </button>
       </div>
     </div>

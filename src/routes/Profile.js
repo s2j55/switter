@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { authService } from 'fbase';
-// import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const Profile = ({ refreshUser, userObj }) => {
-    // const history = useHistory();
+    const history = useHistory();
     const [newDisplayName, setNewDisplayName] = useState(userObj.displayName);
-    const onLogOutClick = () => 
+    const onLogOutClick = () => {
         authService.signOut();
-       // history.push('/');                                                   
-    ;
-    const onChange = event => {
+        history.push('/');                                                   
+    };
+    const onChange = (event) => {
         const {
             target: { value },
         } = event;
@@ -42,27 +42,29 @@ const Profile = ({ refreshUser, userObj }) => {
     };
     return (
     <div className="container">
-    <form onSubmit={onSubmit} classNAme="profileForm">
-        <input 
-        onChange={onChange}
-        type="text"
-        autoFocus 
-        placeholder="Display name"
-        value={newDisplayName}
-        className="formInput" />
-        <input 
-            type="submit" 
-            value="Update Profile"
-            className="formBtn"
-            style={{
-                marginTop: 10,
-            }} 
-        />
-    </form>
-    <span className="formBtn cancelBtn logOut" onClick={onLogOutClick}>
-        Log Out
-    </span>
-</div>
-)};
+        <form onSubmit={onSubmit} classNAme="profileForm">
+            <input 
+                onChange={onChange}
+                type="text"
+                autoFocus 
+                placeholder="Display name"
+                value={newDisplayName}
+                className="formInput" 
+            />
+            <input 
+                type="submit" 
+                value="Update Profile"
+                className="formBtn"
+                style={{
+                    marginTop: 10,
+                }} 
+            />
+        </form>
+        <span className="formBtn cancelBtn logOut" onClick={onLogOutClick}>
+            Log Out
+        </span>
+    </div>
+    );
+};
 
 export default Profile;

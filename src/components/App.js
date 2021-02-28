@@ -38,18 +38,18 @@ function App() {
   return (
   <>
   {/* {init ? <AppRouter isLoggedIn={isLoggedIn} userObj={userObj} /> : "Initializing..."} */}
-  {init ? (
-    <AppRouter 
-      refreshUser={refreshUser}
-      isLoggedIn={Boolean(userObj)} 
-      userObj={userObj}   
-    />
+    {init ? (
+      <AppRouter 
+        refreshUser={refreshUser}
+        isLoggedIn={Boolean(userObj)} 
+        userObj={userObj}   
+      />
     ) : (
       "Initializing..."
     )}
   {/* <footer>&copy; Switter {new Date().getFullYear()} </footer> */}
   </>
-  )
+  );
 }
 
 export default App;
