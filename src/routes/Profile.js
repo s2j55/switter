@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { authService } from 'fbase';
 // import { useHistory } from "react-router-dom";
 
-const Profile = ({userObj}) => {
+const Profile = ({ refreshUser, userObj }) => {
     // const history = useHistory();
     const [newDisplayName, setNewDisplayName] = useState(userObj.displayName);
     const onLogOutClick = () => 
@@ -37,6 +37,7 @@ const Profile = ({userObj}) => {
                 // TODO photoURL도 만들어서 넣어보기
                 displayName: newDisplayName,
             });
+            refreshUser();
         }
     };
     return (

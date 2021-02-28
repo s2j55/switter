@@ -12,13 +12,24 @@ function App() {
       // it depends on the status of user's log in
       if (user) {
       //  setIsLoggedIn(true);
-        setUserObj(user);
-      } else {
-      //  setIsLoggedIn(false);
-      }
+        setUserObj({
+          displayName: user.displayName,
+          uid: user.uid,
+          updateProfile: (args) => user.updateProfile(args),
+        });
+      } 
       setInit(true);
     });
-  }, [])
+  }, []);
+  // user's profile을 update하고 navigation에 바로 apply 하기 위해서 만듦.
+  const refreshUser = () => {
+    const user = authService.currentUser;
+    setUserObj({
+        displayName: user.displayName,
+        uid: user.uid,
+        updateProfile: (args) => user.updateProfile(args),
+    });
+  }
   // setInterval(() => {
   //  console.log(authService.currentUser)
   // }, 2000)
@@ -26,7 +37,11 @@ function App() {
   <>
   {/* {init ? <AppRouter isLoggedIn={isLoggedIn} userObj={userObj} /> : "Initializing..."} */}
   {init ? (
-    <AppRouter isLoggedIn={Boolean(userObj)} userObj={userObj} />
+    <AppRouter 
+      refreshUser={refreshUser}
+      isLoggedIn={Boolean(userObj)} 
+      userObj={userObj}   
+    />
     ) : (
       "Initializing..."
     )}
