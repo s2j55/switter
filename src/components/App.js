@@ -11,10 +11,10 @@ function App() {
     authService.onAuthStateChanged((user) => {
       // it depends on the status of user's log in
       if (user) {
-        setIsLoggedIn(true);
+      //  setIsLoggedIn(true);
         setUserObj(user);
       } else {
-        setIsLoggedIn(false);
+      //  setIsLoggedIn(false);
       }
       setInit(true);
     });
