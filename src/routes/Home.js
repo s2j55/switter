@@ -7,7 +7,7 @@ const Home = ({ userObj }) => {
         // console.log(userObj);
         const [sweet, setSweet] = useState("");
         const [sweets, setSweets] = useState([]);
-        const [attachment, setAttachment] = useState();
+        const [attachment, setAttachment] = useState("");
         // -----------------------------old way---------------
         // const getSweets = async() => {
         //    const dbSweets = await dbService.collection("sweets").get()
